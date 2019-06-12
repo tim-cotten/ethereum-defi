@@ -14,8 +14,8 @@ contract DepositAccount {
     }
     
     /// @dev The requested withdrawal amount must be available in the contract balance
-    modifier withMinBalance(uint256 amount) {
-        require(address(this).balance >= amount);
+    modifier withMinBalance(uint256 _amount) {
+        require(address(this).balance >= _amount);
         _;
     }
 
@@ -32,8 +32,8 @@ contract DepositAccount {
     }
     
     /// @dev Partial withdrawal
-    /// @param amount Amount requested for withdrawal
-    function withdraw(uint256 amount) public payable onlyOwner withMinBalance(amount) {
-        msg.sender.transfer(amount);
+    /// @param _amount Amount requested for withdrawal
+    function withdraw(uint256 _amount) public payable onlyOwner withMinBalance(_amount) {
+        msg.sender.transfer(_amount);
     }
 }
